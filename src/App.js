@@ -1,9 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
+import Gallery from './Gallery';
+import images from './data/images.json';
 
 function App() {
+
   return (
     <div className="App">
+
+      <Gallery images={images} />
+
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
