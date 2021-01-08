@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  margin: 120px 0 0;
+  margin: 120px 0 24px;
   min-height: 32vh;
   display: flex;
   flex-direction: column;

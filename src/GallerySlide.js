@@ -11,16 +11,25 @@ class GallerySlide extends Component {
       'left': (-100 * (this.props.currentNdx || 0)) + '%'
     };
 
-    let captiontruncated = ((this.props.image || {}).caption || '');
+    let imgurl = (this.props.image || {}).url || '';
+    let imgtag = '';
+    if (0 < imgurl.length) imgtag =
+      <img className="GallerySlideImage" src={imgurl} alt="" />;
+
+    let captiontruncated = (this.props.image || {}).caption || '';
     if (this.captionmaxlength < captiontruncated.length)
       captiontruncated = captiontruncated.substring(0, this.captionmaxlength - this.truncatedcaptionsuffix.length) + this.truncatedcaptionsuffix;
 
+    let captiondiv = '';
+    if (0 < captiontruncated.length) captiondiv = 
+      <div className="GallerySlideCaption">
+        {captiontruncated}
+      </div>;
+
     return (
       <div className="GallerySlide" style={slidestyle}>
-        <img className="GallerySlideImage" src={(this.props.image || {}).url || ''} alt="" />
-        <div className="GallerySlideCaption">
-          {captiontruncated}
-        </div>
+        {imgtag}
+        {captiondiv}
       </div>
     );
   }

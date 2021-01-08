@@ -3,7 +3,9 @@ import './Gallery.css';
 import GallerySlide from './GallerySlide';
 
 class Gallery extends Component {
-  
+
+  noImagesCaption = 'No images are configured.';
+
   images = [];
   prevBtnRef = null;
   nextBtnRef = null;
@@ -34,22 +36,65 @@ class Gallery extends Component {
     });
   };
 
+
   render() {
+    let images = this.images;
+    if (images.length < 1) {
+      images.push({'caption': this.noImagesCaption});
+    }
+
+    let isSwiping = false;
+    let swipeStartX = 0;
+
     let prevclassname = 'GalleryNav GalleryNavPrev';
     let nextclassname = 'GalleryNav GalleryNavNext';
-    if (this.images.length < 2 ) {
+    if (images.length < 2 ) {
       prevclassname += ' GalleryNavDisabled';
       nextclassname += ' GalleryNavDisabled';
     }
 
     return (
       <div className="Gallery">
-        <div className="GalleryView">
-          {this.images.map((image, index) => {
+        <div className="GalleryView"
+          onDragStart={e => {
+            e.preventDefault();
+          }}
+          onMouseDown={e => {
+            isSwiping = false;
+            swipeStartX = e.clientX || 0;
+          }}
+          onMouseMove={() => {
+            isSwiping = true;
+          }}
+          onMouseUp={e => {
+            if (isSwiping) {
+              const swipeEndX = e.clientX || 0;
+              if (6 + swipeEndX < swipeStartX) this.nextBtnRef.current.click();
+              else if (6 + swipeStartX < swipeEndX) this.prevBtnRef.current.click();
+              isSwiping = false;
+            }
+          }}
+          onTouchStart={e => {
+            isSwiping = false;
+            swipeStartX = (0 < (e.touches || []).length) ? (e.touches[0].clientX || 0) : 0;
+          }}
+          onTouchMove={() => {
+            isSwiping = true;
+          }}
+          onTouchEnd={e => {
+            if (isSwiping) {
+              const swipeEndX = (0 < (e.changedTouches || []).length) ? (e.changedTouches[0].clientX || 0) : 0;
+              if (6 + swipeEndX < swipeStartX) this.nextBtnRef.current.click();
+              else if (6 + swipeStartX < swipeEndX) this.prevBtnRef.current.click();
+              isSwiping = false;
+            }
+          }}
+        >
+          {images.map((image, index) => {
             return (
               <GallerySlide key={index} image={image} currentNdx={this.state.currentNdx} />
             );
-           })}
+          })}
         </div>
         <div className={prevclassname} ref={this.prevBtnRef} onClick={this.onPrevClick}>&#8249;</div>
         <div className={nextclassname} ref={this.nextBtnRef} onClick={this.onNextClick}>&#8250;</div>
