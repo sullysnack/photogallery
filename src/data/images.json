@@ -11,5 +11,5 @@
 {"url": "http://dev3.ds47.net/public/images/010-200x113.jpg", "caption": "Beach bar 10"},
 {"url": "http://dev3.ds47.net/public/images/011-1715x2000.jpg", "caption": "Beach bar 11"},
 {"url": "http://dev3.ds47.net/public/images/012-237x356.jpg", "caption": "Beach bar 12 Beach bar 12 Beach bar 12 Beach bar 12 Beach bar 12 Beach bar 12 Beach bar 12 Beach bar 12 Beach bar 12 Beach bar 12 Beach bar 12 Beach bar 12 Beach bar 12 Beach bar 12 Beach bar 12 Beach bar 12 Beach bar 12 Beach bar 12 Beach bar 12 Beach bar 12 Beach bar 12 Beach bar 12 Beach bar 12 Beach bar 12 Beach bar 12 Beach bar 12 Beach bar 12"},
-{"url": "http://dev3.ds47.net/public/images/filedoesnotexist.jpg", "caption": "Beach bar 13"}
+{"url": "http://dev3.ds47.net/public/images/filedoesnotexist.jpg", "caption": "This file does not exist. Testing broken image behavior."}
 ]

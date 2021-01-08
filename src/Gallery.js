@@ -18,21 +18,41 @@ class Gallery extends Component {
     };
   }
 
-  componentDidMount() {
-  }
+  onPrevClick = (e) => {
+    if (this.images.length < 2) return;
+    let newNdx = (0 < this.state.currentNdx) ? this.state.currentNdx - 1 : this.images.length - 1;
+    this.setState({
+      currentNdx: newNdx
+    });
+  };
+
+  onNextClick = (e) => {
+    if (this.images.length < 2) return;
+    let newNdx = ((1 + this.state.currentNdx) < this.images.length) ? 1 + this.state.currentNdx : 0;
+    this.setState({
+      currentNdx: newNdx
+    });
+  };
 
   render() {
+    let prevclassname = 'GalleryNav GalleryNavPrev';
+    let nextclassname = 'GalleryNav GalleryNavNext';
+    if (this.images.length < 2 ) {
+      prevclassname += ' GalleryNavDisabled';
+      nextclassname += ' GalleryNavDisabled';
+    }
+
     return (
       <div className="Gallery">
         <div className="GalleryView">
           {this.images.map((image, index) => {
             return (
-              <GallerySlide key={index} number={1 + index} image={image} />
+              <GallerySlide key={index} image={image} currentNdx={this.state.currentNdx} />
             );
-          })}
+           })}
         </div>
-        <div className="GalleryPrev" ref={this.prevBtnRef}>&#8249;</div>
-        <div className="GalleryNext" ref={this.nextBtnRef}>&#8250;</div>
+        <div className={prevclassname} ref={this.prevBtnRef} onClick={this.onPrevClick}>&#8249;</div>
+        <div className={nextclassname} ref={this.nextBtnRef} onClick={this.onNextClick}>&#8250;</div>
       </div>
     );
   }

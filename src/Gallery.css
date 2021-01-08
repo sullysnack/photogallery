@@ -3,6 +3,8 @@
   margin: 10px;
   height: 500px;
   width: calc(100% - 20px);
+  overflow: hidden;
+  background-color: #666;
 }
 
 .GalleryView {
@@ -12,34 +14,9 @@
   bottom: 0;
   left: 0;
   display: flex;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  /*
-  scrollbar-color: transparent transparent;
-  scrollbar-width: 0px;
-  */
-}
-/*
-.GalleryView::-webkit-scrollbar {
-  width: 0;
 }
 
-.GalleryView::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.GalleryView::-webkit-scrollbar-thumb {
-  background: transparent;
-  border: none;
-}
-
-.GalleryView {
-  -ms-overflow-style: none;
-}
-*/
-
-.GalleryPrev,
-.GalleryNext {
+.GalleryNav {
   display: inline-block;
   position: absolute;
   top: calc(50% - 30px);
@@ -55,10 +32,14 @@
   cursor: pointer;
 }
 
-.GalleryPrev {
+.GalleryNav.GalleryNavDisabled {
+  display: none;
+}
+
+.GalleryNav.GalleryNavPrev {
   left: 14px;
 }
 
-.GalleryNext {
+.GalleryNav.GalleryNavNext {
   right: 14px;
 }
