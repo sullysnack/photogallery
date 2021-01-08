@@ -36,7 +36,6 @@ class Gallery extends Component {
     });
   };
 
-
   render() {
     let images = this.images;
     if (images.length < 1) {
@@ -96,8 +95,8 @@ class Gallery extends Component {
             );
           })}
         </div>
-        <div className={prevclassname} ref={this.prevBtnRef} onClick={this.onPrevClick}>&#8249;</div>
-        <div className={nextclassname} ref={this.nextBtnRef} onClick={this.onNextClick}>&#8250;</div>
+        <div className={prevclassname} ref={this.prevBtnRef} onClick={this.onPrevClick}>&#8678;</div>
+        <div className={nextclassname} ref={this.nextBtnRef} onClick={this.onNextClick}>&#8680;</div>
       </div>
     );
   }
